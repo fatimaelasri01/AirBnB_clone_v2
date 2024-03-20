@@ -7,13 +7,7 @@ from sqlalchemy.orm import relationship
 
 
 class City(BaseModel, Base):
-    """ Model representation of `citiy` table
-    Attributes:
-        state_id: The state id
-        name: input name
-        places: constraint to delete a Place instance if its
-                corresponding City instance is deleted.
-    """
+    """ Model representation of `citiy` table"""
     __tablename__ = "cities"
 
     if getenv('HBNB_TYPE_STORAGE') == 'db':
