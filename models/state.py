@@ -9,7 +9,15 @@ from models.city import City
 
 
 class State(BaseModel, Base):
-    """ model representation of a `State` table"""
+    """ model representation of a `State` table
+    Attributes:
+        name: name of state
+        if `db` is selected;
+            cities: constraint to delete a City instance if its
+                corresponding State instance is deleted.
+        else:
+            cities: a list of cities
+    """
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
 
