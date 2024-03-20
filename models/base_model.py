@@ -57,7 +57,7 @@ class BaseModel:
         storage.save()
 
     def to_dict(self):
-        """Convert instance into dict format"""                  (str(type(self)).split('.')[-1]).split('\'')[0]})
+        """Convert instance into dict format"""
         dictionary = dict(self.__dict__)
         dictionary["__class__"] = str(type(self).__name__)
         dictionary['created_at'] = self.created_at.isoformat()
