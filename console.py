@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+Dr#!/usr/bin/python3
 """ Console Module """
 import cmd
 import sys
@@ -114,8 +114,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class
-        """
+        """ Create an object of any class """
         try:
             if not args:
                 raise SyntaxError()
