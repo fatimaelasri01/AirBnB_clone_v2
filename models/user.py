@@ -9,7 +9,6 @@ from os import getenv
 class User(BaseModel, Base):
     """Python model representation of a `User` table """
     __tablename__ = "users"
-    
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
