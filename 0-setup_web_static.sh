@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
-#installs nginx if not installed
+#check if script is run as root
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root" 1>&2
+    exit 1
+fi
+
+#install Nginx if not already installed
 if ! command -v nginx &> /dev/null; then
     apt-get -y update
     apt-get -y install nginx
 fi
 
-#create necessary dir if they don't exist
+#create necessary directories if they don't exist
 mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
 
@@ -20,16 +26,17 @@ web="<html>
 </html>"
 echo "$web" > /data/web_static/releases/test/index.html
 
-#create sym link
+#create symbolic link
 ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 #give ownership of /data/ to ubuntu user and group
 chown -R ubuntu:ubuntu /data/
 
-#update nginx configuration
+#update Nginx configuration
 sed -i '/hbnb_static/ { /alias/ { s/#//; } }' /etc/nginx/sites-available/default
 
-#restart nginx
+#restart Nginx
 service nginx restart
 
 exit 0
+
