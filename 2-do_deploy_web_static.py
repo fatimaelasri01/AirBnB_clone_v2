@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-fabric script based on 1-pack_web_static.py that distributes an
+make a script based on 1-pack_web_static.py that distributes an
 archive to web servers
 """
 
@@ -28,5 +28,6 @@ def do_deploy(archive_path):
         run('rm -rf /data/web_static/current')
         run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
         return True
-    except:
+    except Exception as e:
+        print("Exception occurred:", e)
         return False
